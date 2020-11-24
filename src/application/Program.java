@@ -17,21 +17,21 @@ public class Program {
     public static void main(String[] args) throws ParseException {
 
         Locale.setDefault(Locale.US);
-        Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        var sc = new Scanner(System.in);
+        var sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         List<Product> list = new ArrayList<>();
 
         System.out.print("Enter the number of products: ");
-        int n = sc.nextInt();
+        var n = sc.nextInt();
 
         for (int i=1; i<=n; i++) {
             System.out.println("Product #" + i + " data:");
             System.out.print("Common, used or imported (c/u/i)? ");
-            char type = sc.next().charAt(0);
+            var type = sc.next().charAt(0);
             System.out.print("Name: ");
             sc.nextLine();
-            String name = sc.nextLine();
+            var name = sc.nextLine();
             System.out.print("Price: ");
             double price = sc.nextDouble();
             if (type == 'c') {
@@ -39,12 +39,12 @@ public class Program {
             }
             else if (type == 'u') {
                 System.out.print("Manufacture date (DD/MM/YYYY): ");
-                Date date = sdf.parse(sc.next());
+                var date = sdf.parse(sc.next());
                 list.add(new UsedProduct(name, price, date));
             }
             else {
                 System.out.print("Customs fee: ");
-                double customsFee = sc.nextDouble();
+                var customsFee = sc.nextDouble();
                 list.add(new ImportedProduct(name, price, customsFee));
             }
         }
