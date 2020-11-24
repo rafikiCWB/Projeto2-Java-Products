@@ -22,7 +22,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -31,5 +31,4 @@ public class Product {
                 + " $ "
                 + String.format("%.2f", price);
     }
-
 }

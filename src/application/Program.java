@@ -14,47 +14,44 @@ import entities.UsedProduct;
 
 public class Program {
 
-    public static void main(String[] args) throws ParseException  {
+    public static void main(String[] args) throws ParseException {
 
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-
-        var sdf = new SimpleDateFormat("dd/MM/yyyy ");
-        //    var format = new Date(System.currentTimeMillis());
-        //    System.out.println(df.format(format));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         List<Product> list = new ArrayList<>();
 
-        System.out.print("Enter the number of products: ");//Exemplo 3.
-        var n = sc.nextInt();
+        System.out.print("Enter the number of products: ");
+        int n = sc.nextInt();
 
-        for (int i = 1; i <= n; i++) {//for para percorrer a quantidade de produtos.
-            System.out.println("Product #" + i + " data");
-            System.out.print("Common, used or imported (c/u/i):");
-            char t = sc.next().charAt(0);
-            System.out.print("Nome: ");
+        for (int i=1; i<=n; i++) {
+            System.out.println("Product #" + i + " data:");
+            System.out.print("Common, used or imported (c/u/i)? ");
+            char type = sc.next().charAt(0);
+            System.out.print("Name: ");
             sc.nextLine();
             String name = sc.nextLine();
             System.out.print("Price: ");
             double price = sc.nextDouble();
-
-            if (t == 'c') {
+            if (type == 'c') {
                 list.add(new Product(name, price));
-            } else if (t == 'u') {
+            }
+            else if (type == 'u') {
                 System.out.print("Manufacture date (DD/MM/YYYY): ");
                 Date date = sdf.parse(sc.next());
                 list.add(new UsedProduct(name, price, date));
-            } else {
+            }
+            else {
                 System.out.print("Customs fee: ");
-                double customfee = sc.nextDouble();
-                list.add(new ImportedProduct(name, price, customfee));
+                double customsFee = sc.nextDouble();
+                list.add(new ImportedProduct(name, price, customsFee));
             }
         }
+
         System.out.println();
-        System.out.println("Dados: ");
-        for (Product pdct : list) {
-            System.out.println(pdct.priceTag());
-        }
+        System.out.println("PRICE TAGS:");
+        for (Product prod : list) System.out.println(prod.priceTag());
 
         sc.close();
     }
